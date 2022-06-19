@@ -1,0 +1,51 @@
+static const char pinScreen[] PROGMEM = R"rawliteral(
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+<style>
+input{
+  width: 80%;
+  height: 30%;
+  left: 10%;
+  border: 1px solid black;
+  position:absolute;
+  font-size: 32pt;
+}
+button {
+  position:absolute;
+  background-color: green;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 80%;
+  height: 30%;
+  left: 10%;
+  font-size: 42pt;
+}
+button:hover {
+  opacity: 0.8;
+}
+button:active{
+    transform: translateY(4px);
+}
+.container {
+  padding: 16px;
+  font-size: 64pt;
+  position: relative;
+}
+</style>
+</head>
+<body>
+<h1>Cửa cuốn</h1>
+<h3>Vui lòng nhập mật khẩu</h3>
+  <div class="container">
+    <br>
+    <input type="password"placeholder="Nhập mật khẩu" name="psw" inputmode="numeric" required >
+    <br>
+    <button>OK</button>
+  </div>
+</form>
+</body>
+</html>
+)rawliteral";
