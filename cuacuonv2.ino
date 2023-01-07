@@ -5,7 +5,8 @@
 #include <ESP8266HTTPClient.h>
 #include "html.h"
 #include "tiny-json.h"
-
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
 
 #define UPDATE_PATH                 "/update"
 #define UPDATE_USER                 "DamDat"
@@ -126,6 +127,8 @@ void setup() {
   }
   localNetworkIP = WiFi.localIP().toString();
 
+  //blynk setup
+  Blynk.begin(BLYNK_AUTH_TOKEN,NETWORK_WIFI_SSID,NETWORK_WIFI_PASS);
   // timing 
   now = preHttp = millis();
 }
@@ -135,6 +138,7 @@ int httpCode;
 
 
 void loop() {
+  Blynk.run();
   now = millis();
   //pin control
   if(WiFi.status()==WL_CONNECTED)
@@ -196,6 +200,15 @@ void loop() {
       Serial.println(2);
     }
   }
+}
+
+BLYNK_WRITE(V1)
+{
+  // Read the value of the virtual pin
+  int pinValue = param.asInt();
+
+  // Set the value of the physical pin to the value of the virtual pin
+  digitalWrite(pin1, pinValue);
 }
 
 
